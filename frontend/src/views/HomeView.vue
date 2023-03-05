@@ -1,9 +1,7 @@
 <script setup lang="ts">
-import ApiTest from "@/components/ApiTest.vue";
+import UserIndex from "@/components/UserIndex.vue";
 </script>
 
 <template>
-  <main>
-    <api-test></api-test>
-  </main>
+  <user-index></user-index>
 </template>
