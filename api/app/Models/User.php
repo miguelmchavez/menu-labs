@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Exception;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -56,11 +57,15 @@ class User extends Authenticatable
 
     protected function clientWeather(WeatherRequester $provider, User $user)
     {
-        $weather = Cache::remember("user_weather_{$user->id}", 3600, function () use ($provider, $user) {
-            $provider->setPosition($user->latitude, $user->longitude);
-            return $provider->getWeather();
-        });
-
-        return $weather;
+        try {
+            $weather = Cache::remember("user_weather_{$user->id}", 3600, function () use ($provider, $user) {
+                $provider->setPosition($user->latitude, $user->longitude);
+                return $provider->getWeather();
+            });
+    
+            return $weather;
+        } catch (Exception $e) {
+            return null;
+        }
     }
 }

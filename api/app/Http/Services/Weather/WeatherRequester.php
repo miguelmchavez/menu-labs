@@ -2,6 +2,8 @@
 
 namespace App\Http\Services\Weather;
 
+use Illuminate\Http\Client\Response;
+
 abstract class WeatherRequester
 {
     public string $lat;
@@ -9,6 +11,8 @@ abstract class WeatherRequester
     public string $lng;
 
     abstract public function getWeatherNetwork(): WeatherConnector;
+
+    abstract public function processData(Response $response): Weather;
 
     public function setPosition(string $lat, string $lng): void
     {
@@ -20,6 +24,8 @@ abstract class WeatherRequester
     {
         $weather = $this->getWeatherNetwork();
 
-        return $weather->request($this->lat, $this->lng);
+        $response = $weather->request($this->lat, $this->lng);
+
+        return $this->processData($response);
     }
 }

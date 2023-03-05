@@ -3,6 +3,7 @@
 namespace App\Http\Services\Weather;
 
 use App\Http\Services\Webservice;
+use Illuminate\Http\Client\Response;
 
 class OpenWeatherConnector extends Webservice implements WeatherConnector
 {
@@ -27,27 +28,13 @@ class OpenWeatherConnector extends Webservice implements WeatherConnector
         return "https://api.openweathermap.org/data/2.5/weather?lat={$this->lat}&lon={$this->lng}&appid={$key}&units=metric";
     }
 
-    public function request(string $lat, string $lng): Weather
+    public function request(string $lat, string $lng): Response
     {
         $this->lat = $lat;
         $this->lng = $lng;
 
-        $res = $this->makeRequest();
+        $response = $this->makeRequest();
 
-        return $this->handleData($res);
-    }
-
-    public function handleData($data): Weather
-    {
-        $weather = new Weather();
-        $weather->setDescription($data['weather'][0]['main']);
-        $weather->setTemperature($data['main']['temp']);
-        $weather->setFeelsLike($data['main']['feels_like']);
-        $weather->setMinTemperature($data['main']['temp_min']);
-        $weather->setMaxTemperature($data['main']['temp_max']);
-        $weather->setPressure($data['main']['pressure']);
-        $weather->setHumidity($data['main']['humidity']);
-
-        return $weather;
+        return $response;
     }
 }
