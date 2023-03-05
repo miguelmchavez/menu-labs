@@ -38,27 +38,27 @@
                             <p class="subtitle is-6">{{ user.email }}</p>
                         </div>
                     </div>
-                    <div class="content">
-                        <div class="block">
+                    <div class="content" v-if="user.weather">
+                        <div class="block" v-if="user.weather.description">
                             <strong>Description:</strong> {{ user.weather.description }}
                         </div>
-                        <div class="block">
-                            <strong>Temperature:</strong> {{ user.weather.temperature }}
+                        <div class="block" v-if="user.weather.temperature">
+                            <strong>Temperature:</strong> {{ user.weather.temperature }} °C
                         </div>
-                        <div class="block">
-                            <strong>Feels Like:</strong> {{ user.weather.feelsLike }}
+                        <div class="block" v-if="user.weather.feelsLike">
+                            <strong>Feels Like:</strong> {{ user.weather.feelsLike }} °C
                         </div>
-                        <div class="block">
-                            <strong>Minimum Temperature:</strong> {{ user.weather.minTemperature }}
+                        <div class="block" v-if="user.weather.minTemperature">
+                            <strong>Minimum Temperature:</strong> {{ user.weather.minTemperature }} °C
                         </div>
-                        <div class="block">
-                            <strong>Maximum Temperature:</strong> {{ user.weather.maxTemperature }}
+                        <div class="block" v-if="user.weather.maxTemperature">
+                            <strong>Maximum Temperature:</strong> {{ user.weather.maxTemperature }} °C
                         </div>
-                        <div class="block">
-                            <strong>Pressure:</strong> {{ user.weather.pressure }}
+                        <div class="block" v-if="user.weather.pressure">
+                            <strong>Pressure:</strong> {{ user.weather.pressure }} Milibar
                         </div>
-                        <div class="block">
-                            <strong>Humidity:</strong> {{ user.weather.humidity }}
+                        <div class="block" v-if="user.weather.humidity">
+                            <strong>Humidity:</strong> {{ user.weather.humidity }} %
                         </div>
                     </div>
                 </div>
