@@ -33,6 +33,7 @@
                         <th>Name</th>
                         <th>Latitude</th>
                         <th>Longitude</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -40,6 +41,9 @@
                         <th>{{ user.name }}</th>
                         <th>{{ user.latitude }}</th>
                         <th>{{ user.longitude }}</th>
+                        <th>
+                            <RouterLink :to="{ name: 'user', params: { id: user.id } }" class="navbar-item">Show</RouterLink>
+                        </th>
                     </tr>
                 </tbody>
             </table>
