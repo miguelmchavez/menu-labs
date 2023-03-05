@@ -30,6 +30,7 @@
             <table class="table">
                 <thead>
                     <tr>
+                        <th>#</th>
                         <th>Name</th>
                         <th>Latitude</th>
                         <th>Longitude</th>
@@ -37,7 +38,8 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr v-for="user in users" :key="user.id">
+                    <tr v-for="(user, index) in users" :key="user.id">
+                        <th>{{ index + 1 }}</th>
                         <th>{{ user.name }}</th>
                         <th>{{ user.latitude }}</th>
                         <th>{{ user.longitude }}</th>
