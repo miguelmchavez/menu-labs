@@ -16,7 +16,7 @@ abstract class WeatherRequester
         $this->lng = $lng;
     }
 
-    public function getWeather(): string
+    public function getWeather(): Weather
     {
         $weather = $this->getWeatherNetwork();
 
