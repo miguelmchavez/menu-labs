@@ -38,6 +38,11 @@
                             <p class="subtitle is-6">{{ user.email }}</p>
                         </div>
                     </div>
+                    <div class="content" v-if="!user.weather">
+                        <div class="block">
+                            <strong>No matching location found.</strong>
+                        </div>
+                    </div>
                     <div class="content" v-if="user.weather">
                         <div class="block" v-if="user.weather.description">
                             <strong>Description:</strong> {{ user.weather.description }}
@@ -55,7 +60,7 @@
                             <strong>Maximum Temperature:</strong> {{ user.weather.maxTemperature }} °C
                         </div>
                         <div class="block" v-if="user.weather.pressure">
-                            <strong>Pressure:</strong> {{ user.weather.pressure }} Milibar
+                            <strong>Pressure:</strong> {{ user.weather.pressure }} mb
                         </div>
                         <div class="block" v-if="user.weather.humidity">
                             <strong>Humidity:</strong> {{ user.weather.humidity }} %
