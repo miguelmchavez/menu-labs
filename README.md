@@ -46,3 +46,7 @@ Using Laravel and VueJS, create an application which shows the weather for a set
 - Install javascript dependencies: `npm install`
 - Run frontend: `npm run dev`
 - Visit frontend: `http://localhost:5173`
+
+
+### Notes
+The project is prepare to use [OpenWeather](https://openweathermap.org/) or [WeatherAPI](https://www.weatherapi.com/).
