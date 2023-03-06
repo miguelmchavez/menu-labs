@@ -7,14 +7,6 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 class UserResource extends JsonResource
 {
-    public bool $flag;
-
-    public function __construct($resource, bool $flag)
-    {
-        $this->resource = $resource;
-        $this->flag = $flag;
-    }
-
     /**
      * Transform the resource into an array.
      *
@@ -22,8 +14,10 @@ class UserResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        $weather = false;
-        if ($this->flag) {
+        $flag = false;
+        $weather = null;
+        if (request()->route('user')) {
+            $flag = true;
             $weather = $this->getWeather();
         }
 
@@ -33,7 +27,7 @@ class UserResource extends JsonResource
             'email' => $this->email,
             'lat' => $this->latitude,
             'lng' => $this->longitude,
-            'weather' => $this->when($this->flag, $weather),
+            'weather' => $this->when($flag, $weather),
         ];
     }
 }
