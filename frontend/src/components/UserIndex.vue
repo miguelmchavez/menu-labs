@@ -11,8 +11,8 @@
 
         methods: {
             async fetchData() {
-                const url = 'http://localhost/'
-                const { users } = await (await fetch(url)).json();
+                const url = 'http://localhost/users'
+                const { data: users } = await (await fetch(url)).json();
                 this.response = true;
                 this.users = users;
             }
@@ -41,8 +41,8 @@
                     <tr v-for="(user, index) in users" :key="user.id">
                         <th>{{ index + 1 }}</th>
                         <th>{{ user.name }}</th>
-                        <th>{{ user.latitude }}</th>
-                        <th>{{ user.longitude }}</th>
+                        <th>{{ user.lat }}</th>
+                        <th>{{ user.lng }}</th>
                         <th>
                             <RouterLink :to="{ name: 'user', params: { id: user.id } }" class="navbar-item">Show</RouterLink>
                         </th>
